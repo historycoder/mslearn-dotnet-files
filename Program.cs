@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 var currentDirectory = Directory.GetCurrentDirectory();
 var storesDirectory = Path.Combine(currentDirectory, "stores");
+
+var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
+Directory.CreateDirectory(salesTotalDir);
+
 var salesFiles = FindFiles(storesDirectory);
 
-foreach (var salesFile in salesFiles){
-    Console.WriteLine(salesFile);
-}
+File.WriteAllText(Path.Combine(salesTotalDir, "totals.txt"), String.Empty);
 
 static IEnumerable<string> FindFiles(string folderName) {
     List<string> salesFiles = new();
